@@ -170,6 +170,13 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 .copy-right p a:hover {
 	color:#fff;
 }
+
+#frm_register .invalid-feedback{
+	margin-bottom: 10px;
+	font-size: 12px;
+	text-align: center;
+}
+
 /*----start-responsive design-----*/
 @media (max-width:1440px){
 	.main {
@@ -283,4 +290,9 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	margin: 9px 0px;
 	}
 	
+}
+@media {
+	.contorno{
+		margin-top: 5%;
+	}
 }
