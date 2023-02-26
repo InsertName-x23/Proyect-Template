@@ -66,23 +66,19 @@ function compararClave(){
 function registrar(){
  
   let nombre = document.getElementById("nombre");
-  let apellido = document.getElementById("apellido");
-  let celular = document.getElementById("celular");
-  let direccion = document.getElementById("direccion");
-  let correo = document.getElementById("correo1");
-  let clave = document.getElementById("clave1");
+  let correo = document.getElementById("email");
+  let clave = document.getElementById("contra");
+  let c_contra = document.getElementById("c_contra");
+
   let usuario = {
     nombre:nombre.value,
-    apellido:apellido.value,
-    celular:celular.value,
-    direccion:direccion.value,
     correo:correo.value,
     clave:clave.value
+    c_contra:c_contra.value
   };
   
   localStorage.setItem("usuario",JSON.stringify(usuario));
   alert("¡Muy bien, registro exitoso!")
-  cambiarFormulario();
 }
 
 
