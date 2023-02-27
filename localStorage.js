@@ -10,7 +10,25 @@ if(frm_login != null) frm_login.addEventListener("submit", Login);
 if(frm_registro != null) frm_registro.addEventListener("submit", Registro);
 
 function Login(event){
+  verificarUsuario = JSON.parse(localStorage.getItem("Usuario"));
 
+  if (
+    verificarUsuario.correo !== impCorreoSingIn.value ||
+    verificarUsuario.contraseña !==
+      CryptoJS.MD5(impContraseñaSingIn.value).toString()
+  ) {
+    event.preventDefault();
+  } else {
+    const MD5passwordLognIn = CryptoJS.MD5(
+      impContraseñaSingIn.value
+    ).toString();
+    let secionUsuario = {
+      contraseña: MD5passwordLognIn,
+      correo: impCorreoSingIn.value,
+    };
+
+    localStorage.setItem("secionUsuario", JSON.stringify(secionUsuario));
+    window.location.replace("public/home.html");
 }
 
 function Registro(event){
