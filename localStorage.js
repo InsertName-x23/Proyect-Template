@@ -1,84 +1,28 @@
-let frm_login, frm_registro, home;
+let frm_login, frm_registro;
 let btn_enviar_registrar, btn_enviar; 
-let correo; 
-let img_perfil; 
 
-window.onload = function(){
-	frm_login = document.getElementById("frm_login");
-	btn_enviar = document.getElementById("btn_login");
-	btn_enviar_registrar = document.getElementById("btn_enviar_registrar");
-	frm_registro = document.getElementById("frm_register");
+frm_login = document.getElementById("frm_login");
+btn_enviar = document.getElementById("btn_login");
+btn_enviar_registrar = document.getElementById("btn_enviar_registrar");
+frm_registro = document.getElementById("frm_register");
 
-	configurar_login();
-	configurar_registro();
+if(frm_login != null) frm_login.addEventListener("submit", Login);
+if(frm_registro != null) frm_registro.addEventListener("submit", Registro);
+
+function Login(event){
+
 }
 
-function configurar_login(){
-	frm_login.addEventListener('submit', event => {
-		event.preventDefault();
-		event.stopPropagation();
-		if(frm_login.checkValidity()){
-			compararClave();
-		}
-		frm_login.classList.add('was-validated')
-	}, false);
-}
+function Registro(event){
+	const MD5password = CryptoJS.MD5(impContraseña.value).toString();
+    let Usuario = {
+      nombre: impNombre.value,
+      contraseña: MD5password,
+      correo: impCorreo.value,
+      empresa: impEmpresa.value,
+    };
 
-function configurar_registro(){
-  frm_registro.addEventListener('submit', event => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (frm_registro.checkValidity()) 
-      {
-         registrar();
-      }
-      frm_registro.classList.add('was-validated');
-    }, false);
-}
-
-function compararClave(){
-  let correo = document.getElementById("correo");
-  let clave = document.getElementById("clave");
-  event.preventDefault();
-  let usuario = JSON.parse(localStorage.getItem("usuario"));
-  let html;
-  if(correo.value==usuario.correo && clave.value== usuario.clave)
-  {
-    frm_login.classList.remove('was-validated');
-    frm_login.reset();
-    frm_login.classList.add("ocultar");
-    home.classList.remove("ocultar");
-    html = `
-      <nav>
-        <img src="${img_perfil}" />
-        <a href="javascript:void(0);" id="btn_cerrar_sesion" onclick="cerrarSesion();">Cerrar sesion</a>
-      </nav>
-      <h2>Pagina principal </h2> 
-      <br>Hola ${usuario.nombre}
-     `;
-    home.innerHTML = html;
-  }
-  else{
-    alert("Datos incorrectos");
-  }
-}
-
-function registrar(){
- 
-  let nombre = document.getElementById("nombre");
-  let correo = document.getElementById("email");
-  let clave = document.getElementById("contra");
-  let c_contra = document.getElementById("c_contra");
-
-  let usuario = {
-    nombre:nombre.value,
-    correo:correo.value,
-    clave:clave.value
-    c_contra:c_contra.value
-  };
-  
-  localStorage.setItem("usuario",JSON.stringify(usuario));
-  alert("¡Muy bien, registro exitoso!")
+    localStorage.setItem("Usuario", JSON.stringify(Usuario));
 }
 
 
